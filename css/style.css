@@ -1,0 +1,23 @@
+.search-within {
+  display:none;
+}
+
+.listdata {
+  width: 200px;
+  height:40px;
+  display:block;
+  background-color: teal;
+  color:white;
+  margin:0;
+  margin-bottom: 10px;
+  border-bottom-color: yellow 1px solid;
+}
+
+a{
+  width: 200px;
+  height:40px;
+  color:white;
+  text-decoration: none;
+  margin:0 auto;
+}
+
