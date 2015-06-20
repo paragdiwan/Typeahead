@@ -1,4 +1,4 @@
-# Typeahead
+# Typeahead Using AngularJS Directive & Service
 - Typeahead / Autocomplete using AngularJS
 - Uses Directive 
 - Pull Data from Service
