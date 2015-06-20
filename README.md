@@ -4,6 +4,6 @@
 - Pull Data from Service
 
 @Todos:
-1. Look & Feel;
-2. Allow navigation using Keyboard.
-3. ENTER & ESCAPE key handling.
+1. Look & Feel;&br;
+2. Allow navigation using Keyboard.&br;
+3. ENTER & ESCAPE key handling.&br;
