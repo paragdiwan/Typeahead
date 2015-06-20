@@ -1,7 +1,6 @@
-var modServiceDef = angular.module('modSerDefinition', []);
-
-modServiceDef.controller('modDefCtrl', ['$scope', 'myFactory', function($scope,  myFactory) {
-  	myFactory.getData().then(function (httpData) {
+angular.module('demoApp', ['pdTypeAhead'])
+.controller('mainCtrl', ['$scope', 'pdTypeAheadService', function($scope,  pdTypeAheadService) {
+  	pdTypeAheadService.getData().then(function (httpData) {
             $scope.dataToPopulate = httpData;
         },function(httpData) {
             console.log('name retrieval failed.');
@@ -10,7 +9,7 @@ modServiceDef.controller('modDefCtrl', ['$scope', 'myFactory', function($scope, 
 ]);	
 
 
-modServiceDef.directive('typeAhead',[function() {
+/*modServiceDef.directive('typeAhead',[function() {
 	return {
 		scope : {
 			cinfo:'=datalist',
@@ -23,9 +22,9 @@ modServiceDef.directive('typeAhead',[function() {
 		},
 		templateUrl:'templates/typeahead.tmpl'
 	}
-}]); 
+}]);*/
 
-modServiceDef.factory('myFactory', function($http,$q) {
+/*modServiceDef.factory('myFactory', function($http,$q) {
 	var factory = {};
 	var def = $q.defer();
 	factory.getData = function() {
@@ -40,4 +39,4 @@ modServiceDef.factory('myFactory', function($http,$q) {
 			return def.promise;
 		}
 	return factory;
-});
+});*/
