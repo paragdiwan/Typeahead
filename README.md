@@ -3,7 +3,7 @@
 - Uses Directive 
 - Pull Data from Service
 
-@Todos: <br>
-1. Look & Feel <br>
-2. Allow navigation using Keyboard. <br>
-3. ENTER & ESCAPE key handling.
+# Todos:
+- Look & Feel 
+- Allow navigation using Keyboard.
+- ENTER & ESCAPE key handling.
