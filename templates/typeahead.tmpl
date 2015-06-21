@@ -1,14 +1,15 @@
 <h2 class='text-center'>Typeahead Example Using AngularJS Directives</h2>
 <div class='bs-example'>
-  <form class=''>
+  
     <div class='form-group col-sm-10'>
       <label for="Search term" class='form-group'>Enter search term</label>
       <input class='form-control' type='search' id='idSearch' ng-model='sterm' ng-change='filterData(sterm)' placeholder='Enter Search Term'/>
-      <div ng-if='visible' class='dropdown'>
-          <a href='#' ng-model='selName' ng-class="{active: data.selected}" ng-click='updateSearchTerm(data)'  ng-repeat="data in typeAheadCtrl.results track by $index" class='divider list-group-item'>
+      <div ng-if='visible' class='dropdown limitHeight'>
+          <a href='#' ng-model='selName' ng-class="{active: data.selected}"
+             ng-click='updateSearchTerm(data)'  ng-repeat="data in typeAheadCtrl.results track by $index" class='divider list-group-item'>
            {{data.value}}
           </a>
       </div>
     </div>
-  </form>
+  
 </div>

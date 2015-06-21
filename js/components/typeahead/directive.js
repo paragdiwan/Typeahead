@@ -28,6 +28,10 @@ angular.module('pdTypeAhead', ['pdMousetrap'])
 					name.selected = false;
 					if (index == selected)
 						name.selected = true;
+						if(document.getElementsByClassName('active').length) {
+							document.getElementsByClassName('dropdown')[0].scrollTop =  document.getElementsByClassName('active')[0].offsetTop;
+						}
+ 					  
 				});
 			};
 
@@ -73,7 +77,6 @@ angular.module('pdTypeAhead', ['pdMousetrap'])
 			});
 
 			$scope.$on('pd.typeahead:applySelection', function(event, selected) {
-				console.log(selected, vm.results[selected]);
 				if ( !vm.results[selected] ) return; //nothing selected show type ahead
 				
 				$scope.updateSearchTerm(vm.results[selected]);
@@ -96,7 +99,6 @@ angular.module('pdTypeAhead', ['pdMousetrap'])
 				vm.results = $filter('limitTo')(vm.results || [], 100); // limit to 100 to keep it responsive.
 				pdTypeAheadSelectService.setSelected(getIndex(sterm));
 				pdTypeAheadSelectService.setMax(getMax());
-
 				$scope.selectedNameIndex = pdTypeAheadSelectService.getSelected();
 			};
 
@@ -104,14 +106,12 @@ angular.module('pdTypeAhead', ['pdMousetrap'])
 		},
 		link:function(scope,element,attr) {
 			// scope.visible = true;
-			
+			element[0].focus();
 			element.attr('pd-mousetrap','');
 			element.removeAttr("type-ahead"); //remove the attribute to avoid indefinite loop
-            element.removeAttr("data-type-ahead"); //also remove the same attribute with data- prefix in case users specify data-common-things in the html
-            
-            $document[0].getElementById('idSearch').focus(); // auto-focus to input field
-      		
-			$compile(element)(scope); // update because of newly added directive
+      element.removeAttr("data-type-ahead"); //also remove the same attribute with data- prefix in case users specify data-common-things in the html
+      $document[0].getElementById('idSearch').focus(); // auto-focus to input field
+      $compile(element)(scope); // update because of newly added directive
 		},
 		templateUrl:'templates/typeahead.tmpl'
 	}
