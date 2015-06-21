@@ -5,14 +5,16 @@
 .listdata {
   width: 200px;
   height:40px;
-  display:block;
+  margin-left: 1em;
+  /*display:block;
   background-color: teal;
   color:white;
   margin:0;
   margin-bottom: 10px;
-  border-bottom-color: yellow 1px solid;
+  border-bottom-color: yellow 1px solid;*/
 }
 
+/*
 a{
   width: 200px;
   height:40px;
@@ -20,4 +22,8 @@ a{
   text-decoration: none;
   margin:0 auto;
 }
+*/
 
+.active {
+  border: 1px solid red;
+}

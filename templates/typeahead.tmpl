@@ -1,9 +1,8 @@
-<input type='search' id='idSearch' ng-model='sterm' placeholder='Enter Search Term' />
-<ul ng-if='sterm.length'>
-  <a href='#'>
-    <li ng-model='selName' ng-click='updateSearchTerm(data)'  ng-repeat="data  in cinfo| filter:sterm as results track by $index " class='listdata'>
-      {{data}}
-    </li>
-  </a>
-</ul>
+<input type='search' id='idSearch' ng-model='sterm' ng-change='filterData(sterm)' placeholder='Enter Search Term'/>
+<!-- ng-blur="close()" -->
+<div ng-if='visible' class="list-group">
+    <a href='#' ng-model='selName' ng-class="{active: data.selected}" ng-click='updateSearchTerm(data)'  ng-repeat="data in typeAheadCtrl.results track by $index" class='listdata list-group-item'>
+     {{data.value}}
+    </a>
+</div>
 
