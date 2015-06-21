@@ -23,16 +23,19 @@ angular.module('pdTypeAhead', ['pdMousetrap'])
 			};
 
 			this.updateSelection = function(selected) {
+				var activeName;
 				$scope.selectedNameIndex = selected;
 				angular.forEach(vm.results, function(name, index) {
 					name.selected = false;
-					if (index == selected)
+					if (index == selected) {
 						name.selected = true;
 						// UI Fix.
-						if(document.getElementsByClassName('active').length) {
-							document.getElementsByClassName('dropdown')[0].scrollTop =  document.getElementsByClassName('active')[0].offsetTop;
+						activeName = document.getElementsByClassName('active');
+						if(activeName.length) {
+							document.getElementsByClassName('dropdown')[0].scrollTop =  activeName[0].offsetTop - activeName[0].offsetHeight;
+							//console.log('set scrolltop', activeName[0].offsetHeight , document.getElementsByClassName('dropdown')[0].scrollTop, activeName[0].offsetTop);
 						}
- 					  
+					} 
 				});
 			};
 
@@ -67,7 +70,7 @@ angular.module('pdTypeAhead', ['pdMousetrap'])
 
 			$scope.$on('pd.typeahead:updatedIndex', function(event, selected) {
 				vm.updateSelection(selected);
-				console.log('event index update happend', selected);
+				//console.log('event index update happend', selected);
 				$scope.$apply();
 			});
 
@@ -81,7 +84,7 @@ angular.module('pdTypeAhead', ['pdMousetrap'])
 				if ( !vm.results[selected] ) return; //nothing selected show type ahead
 				
 				$scope.updateSearchTerm(vm.results[selected]);
-				console.log('event applySelection happend');
+				//console.log('event applySelection happend');
 				$scope.$apply();
 			});
 
@@ -110,9 +113,9 @@ angular.module('pdTypeAhead', ['pdMousetrap'])
 			element[0].focus();
 			element.attr('pd-mousetrap','');
 			element.removeAttr("type-ahead"); //remove the attribute to avoid indefinite loop
-      element.removeAttr("data-type-ahead"); //also remove the same attribute with data- prefix in case users specify data-common-things in the html
-      $document[0].getElementById('idSearch').focus(); // auto-focus to input field
-      $compile(element)(scope); // update because of newly added directive
+			element.removeAttr("data-type-ahead"); //also remove the same attribute with data- prefix in case users specify data-common-things in the html
+			$document[0].getElementById('idSearch').focus(); // auto-focus to input field
+			$compile(element)(scope); // update because of newly added directive
 		},
 		templateUrl:'templates/typeahead.tmpl'
 	}
