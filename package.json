@@ -24,6 +24,6 @@
     "angular": "~1.4.1",
     "grunt": "~0.4.5",
     "bootstrap": "~3.3.5",
-    "mousetrap": "~1.5.2"
+    "mousetrap": "~1.4.6"
   }
 }
