@@ -3,7 +3,5 @@
 - Uses Directive 
 - Pull Data from Service
 
-# Todos:
-- Look & Feel 
-- Allow navigation using Keyboard.
-- ENTER & ESCAPE key handling.
+# Installation
+- Using 'npm install' to Download all Dev-Dependencies. This should setup for you. 
