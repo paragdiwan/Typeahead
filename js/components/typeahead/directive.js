@@ -28,6 +28,7 @@ angular.module('pdTypeAhead', ['pdMousetrap'])
 					name.selected = false;
 					if (index == selected)
 						name.selected = true;
+						// UI Fix.
 						if(document.getElementsByClassName('active').length) {
 							document.getElementsByClassName('dropdown')[0].scrollTop =  document.getElementsByClassName('active')[0].offsetTop;
 						}
