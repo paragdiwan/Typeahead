@@ -41,17 +41,17 @@ angular.module('pdTypeAhead')
 		moveUp: function() {
 			if ( selectedIndex > 0 )
 				selectedIndex--; 
-			console.log('new index - up', selectedIndex);
+			//console.log('new index - up', selectedIndex);
 			$rootScope.$broadcast('pd.typeahead:updatedIndex', selectedIndex);
 		},
 		moveDown: function() {
-			console.log('max', maxIndex);
-			console.log(selectedIndex, 'before update');
+			//console.log('max', maxIndex);
+			//console.log(selectedIndex, 'before update');
 			if ( selectedIndex < maxIndex -1 ){
 				selectedIndex++;
 			}
 			$rootScope.$broadcast('pd.typeahead:updatedIndex', selectedIndex);
-			console.log('new index - down', selectedIndex);
+			//console.log('new index - down', selectedIndex);
 		},
 		applySelection: function() {
 			$rootScope.$broadcast('pd.typeahead:applySelection', selectedIndex);
