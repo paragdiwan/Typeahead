@@ -1,0 +1,29 @@
+{
+  "name": "typeahead",
+  "version": "0.0.0",
+  "description": "- Typeahead / Autocomplete using AngularJS - Uses Directive  - Pull Data from Service",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/paragdiwan/Typeahead.git"
+  },
+  "author": "Parag Diwan",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/paragdiwan/Typeahead/issues"
+  },
+  "keywords": [
+    "Typeahead",
+    "Autocomplete",
+    "AngularJS"
+  ],
+  "devDependencies": {
+    "angular": "~1.4.1",
+    "grunt": "~0.4.5",
+    "bootstrap": "~3.3.5",
+    "mousetrap": "~1.5.2"
+  }
+}
