@@ -83,7 +83,7 @@ angular.module('pdTypeAhead', ['pdMousetrap'])
 
 			$scope.updateSearchTerm = function(selName) {
 				$scope.sterm = selName.value;
-				$scope.filterData(selName);
+				$scope.typeAheadVisible(false);
 			};
 
 			$scope.close = function() {
@@ -101,7 +101,6 @@ angular.module('pdTypeAhead', ['pdMousetrap'])
 			$scope.filterData('');
 		},
 		link:function(scope,element,attr) {
-			// scope.visible = true;
 			element[0].focus();
 			element.attr('pd-mousetrap','');
 			element.removeAttr("type-ahead"); //remove the attribute to avoid indefinite loop
