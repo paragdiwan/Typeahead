@@ -31,49 +31,44 @@ angular.module('pdTypeAhead', ['pdMousetrap'])
 						// UI Fix
 						if(document.getElementsByClassName('active').length) {
 							// 229 is the height of the container.
-							document.getElementsByClassName('dropdown')[0].scrollTop =  document.getElementsByClassName('active')[0].offsetTop -229 ;
+							document.getElementsByClassName('dropdown')[0].scrollTop =  document.getElementsByClassName('active')[0].offsetTop -248;
 						}
  					  
 				});
 			};
-
 			$scope.sterm = '';
 			$scope.visible = true;
-
-			//pdTypeAheadSelectService.setSelected(0);
-			
 			$scope.typeAheadVisible = function(visible) {
 				$scope.visible = $scope.sterm.length > 0 && visible;
 			};
-			//console.log($scope, $attrs);//, pdTypeAheadSelectService);
-			//var selectionDone = false;
 
 			$scope.$watch(function() {return vm.results}, function(results) {
 				var resLength = results.length;
 				if ( !resLength ) return; // not resolved yet
-				// console.log();
 				pdTypeAheadSelectService.setMax(resLength);
-				// console.log('results update', results);
 				vm.updateSelection(pdTypeAheadSelectService.getSelected());
-				// results[0].selected = true;
-				
 				if ( resLength > 1 ) {
-					$scope.typeAheadVisible(true);
-				}
-				else {
-					// we found a name --> hide typeahead
-					$scope.typeAheadVisible(false);
+				 	$scope.typeAheadVisible(true);
 				}
 			});
 
+			$scope.$on('pd.typeahead:enter',function (event, selected) {
+				$scope.typeAheadVisible(false);
+			});
+
+			$scope.$on('pd.typeahead:backspace',function (event, selected) {
+			  if($scope.sterm.length > 1)
+					$scope.typeAheadVisible(true);
+				else
+					$scope.typeAheadVisible(false);
+			});	
+
 			$scope.$on('pd.typeahead:updatedIndex', function(event, selected) {
 				vm.updateSelection(selected);
-				console.log('event index update happend', selected);
 				$scope.$apply();
 			});
 
 			$scope.$on('pd.typeahead:close', function() {
-				console.log('closing..');
 				vm.hide();
 				$scope.$apply();
 			});
@@ -82,7 +77,6 @@ angular.module('pdTypeAhead', ['pdMousetrap'])
 				if ( !vm.results[selected] ) return; //nothing selected show type ahead
 				
 				$scope.updateSearchTerm(vm.results[selected]);
-				console.log('event applySelection happend');
 				$scope.$apply();
 			});
 
@@ -97,6 +91,8 @@ angular.module('pdTypeAhead', ['pdMousetrap'])
 			};
 
 			$scope.filterData = function(sterm) {
+				var regex = '/^'+sterm+'$/g';
+				console.log(regex)
 				vm.results = $filter('filter')($scope.cinfo, sterm);//cinfo| filter:sterm track by $index
 				vm.results = $filter('limitTo')(vm.results || [], 100); // limit to 100 to keep it responsive.
 				pdTypeAheadSelectService.setSelected(getIndex(sterm));

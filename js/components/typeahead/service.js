@@ -1,10 +1,10 @@
 // service.js
 angular.module('pdTypeAhead')
-.factory('pdTypeAheadService', function($http,$q) {
+.factory('pdTypeAheadService', function($http,$q,DATA_SERVICE) {
 	var factory = {};
 	var def = $q.defer();
 	factory.getData = function() {
-		$http.get('https://raw.githubusercontent.com/dominictarr/random-name/master/first-names.json')
+		$http.get(DATA_SERVICE)
 			.success(function(res){
 				var out = res.map(function(value, index){
 					// console.log(value, index);
@@ -13,8 +13,6 @@ angular.module('pdTypeAhead')
 						value: value
 					};
 				});
-				// console.log(out); 
-				//factory.data = out;
 				def.resolve(out);
 			})
 			.error(function(err){
@@ -41,17 +39,13 @@ angular.module('pdTypeAhead')
 		moveUp: function() {
 			if ( selectedIndex > 0 )
 				selectedIndex--; 
-			console.log('new index - up', selectedIndex);
 			$rootScope.$broadcast('pd.typeahead:updatedIndex', selectedIndex);
 		},
 		moveDown: function() {
-			console.log('max', maxIndex);
-			console.log(selectedIndex, 'before update');
 			if ( selectedIndex < maxIndex -1 ){
 				selectedIndex++;
 			}
 			$rootScope.$broadcast('pd.typeahead:updatedIndex', selectedIndex);
-			console.log('new index - down', selectedIndex);
 		},
 		applySelection: function() {
 			$rootScope.$broadcast('pd.typeahead:applySelection', selectedIndex);
