@@ -91,8 +91,6 @@ angular.module('pdTypeAhead', ['pdMousetrap'])
 			};
 
 			$scope.filterData = function(sterm) {
-				var regex = '/^'+sterm+'$/g';
-				console.log(regex)
 				vm.results = $filter('filter')($scope.cinfo, sterm);//cinfo| filter:sterm track by $index
 				vm.results = $filter('limitTo')(vm.results || [], 100); // limit to 100 to keep it responsive.
 				pdTypeAheadSelectService.setSelected(getIndex(sterm));
